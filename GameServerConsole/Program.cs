@@ -104,7 +104,7 @@ namespace GameServerConsole
                     // send the message to all clients that players are joined
                     foreach (PlayerData player in Players)
                     {
-                        PlayerData joined = new PlayerData("Joined",player.imageName, player.playerID, player.X, player.Y);
+                        PlayerData joined = new PlayerData("Joined",player.imageName, player.playerID, player.X, player.Y,"testGamerTag");
                         string json = JsonConvert.SerializeObject(joined);
                         //
                         NetOutgoingMessage JoinedMessage = server.CreateMessage();

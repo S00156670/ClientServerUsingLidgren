@@ -126,8 +126,12 @@ namespace LingrenGame
             spriteBatch.DrawString(font, InGameMessage, new Vector2(10, 10), Color.White);
             if(thisPlayer != null)
             spriteBatch.Draw(playerTextures[thisPlayer.ImageName], thisPlayer.Position, Color.White);
-            foreach(GamePlayer other in OtherPlayers)
+            foreach (GamePlayer other in OtherPlayers)
+            {
                 spriteBatch.Draw(playerTextures[other.ImageName], other.Position, Color.White);
+                spriteBatch.DrawString(font, other.gamerTag  ,other.Position,Color.Black);
+            }
+               
             spriteBatch.End();
             // TODO: Add your drawing code here
 
@@ -156,7 +160,7 @@ namespace LingrenGame
                             string ImageName = "Badges_" + Utility.NextRandom(0, playerTextures.Count - 1);
                             thisPlayer = new GamePlayer(client, Guid.NewGuid(), ImageName,
                                           new Vector2(Utility.NextRandom(100, GraphicsDevice.Viewport.Width - 100),
-                                                       Utility.NextRandom(100, GraphicsDevice.Viewport.Height - 100)));
+                                                       Utility.NextRandom(100, GraphicsDevice.Viewport.Height - 100)), "testGamerTag");
 
                         }
 
@@ -196,7 +200,7 @@ namespace LingrenGame
                 case "Joined":
                     // Add the player to this game as another player
                     string ImageName = "Badges_" + Utility.NextRandom(0, playerTextures.Count - 1);
-                    GamePlayer newPlayer = new GamePlayer(client, otherPlayer.imageName, otherPlayer.playerID, new Vector2(otherPlayer.X, otherPlayer.Y));
+                    GamePlayer newPlayer = new GamePlayer(client, otherPlayer.imageName, otherPlayer.playerID, new Vector2(otherPlayer.X, otherPlayer.Y), "testGamerTag");
                     OtherPlayers.Add(newPlayer);
 
                     break;

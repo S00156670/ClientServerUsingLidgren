@@ -13,14 +13,17 @@ namespace GameServerConsole
         public string playerID;
         public float X;
         public float Y;
+        public string gamerTag = string.Empty;
 
-        public PlayerData(string messageHeader, string ImgName, string id, float x, float y)
+        public PlayerData(string messageHeader, string ImgName, string id, float x, float y ,string GamerTag)
         {
             header = messageHeader;
             playerID = id;
             imageName = ImgName;
             X = x;
             Y = y;
+            gamerTag = GamerTag;
+            gamerTag = "testGamerTag";
         }
 
         public string PlayerMessage(string header)
