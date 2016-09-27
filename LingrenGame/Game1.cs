@@ -18,7 +18,12 @@ namespace LingrenGame
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-                
+
+        string newRecruitName;
+        bool playerJoined = false;
+        DateTime messageIn;
+
+
         private NetPeerConfiguration ClientConfig;
         private NetClient client;
         private string InGameMessage = string.Empty;
@@ -136,7 +141,16 @@ namespace LingrenGame
                 if (other.gamerTag!=null)
                 spriteBatch.DrawString(font, other.gamerTag  ,other.Position,Color.Black);
             }
-               
+
+            if (playerJoined)
+            {
+                spriteBatch.DrawString(font, "joined the game :" + newRecruitName, new Vector2(20,20), Color.Wheat);
+                //// start countdown and fade out
+                //if (DateTime.Now > messageIn + new TimeSpan(0,0,10))
+                //{ playerJoined == false; }
+            }
+            
+
             spriteBatch.End();
             // TODO: Add your drawing code here
 
@@ -212,6 +226,15 @@ namespace LingrenGame
                                             otherPlayer.Y),
                                             otherPlayer.gamerTag);
                     OtherPlayers.Add(newPlayer);
+
+                    //string to pass for who has joined
+                    if (otherPlayer.gamerTag != null)
+                        newRecruitName = otherPlayer.gamerTag;
+                    else
+                        newRecruitName = otherPlayer.playerID;
+
+                    playerJoined = true;
+                    messageIn = DateTime.Now;
 
                     break;
                 default:
