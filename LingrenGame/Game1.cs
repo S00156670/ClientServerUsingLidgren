@@ -106,10 +106,14 @@ namespace LingrenGame
                 sendMsg.Write("Hello there from client at " + gameTime.TotalGameTime.ToString());
                 client.SendMessage(sendMsg, NetDeliveryMethod.ReliableOrdered);
             }
+            ///////////////////////////////////////////////////
+            //if (Keyboard.GetState().IsKeyDown(Keys.A))
+            //{
+            //    thisPlayer.ChangePosition(thisPlayer.Position + new Vector2(1,0));
+            //}
 
 
-
-            CheckMessages();
+                CheckMessages();
             // TODO: Add your update logic here
 
             base.Update(gameTime);
@@ -129,6 +133,7 @@ namespace LingrenGame
             foreach (GamePlayer other in OtherPlayers)
             {
                 spriteBatch.Draw(playerTextures[other.ImageName], other.Position, Color.White);
+                if (other.gamerTag!=null)
                 spriteBatch.DrawString(font, other.gamerTag  ,other.Position,Color.Black);
             }
                
@@ -200,7 +205,12 @@ namespace LingrenGame
                 case "Joined":
                     // Add the player to this game as another player
                     string ImageName = "Badges_" + Utility.NextRandom(0, playerTextures.Count - 1);
-                    GamePlayer newPlayer = new GamePlayer(client, otherPlayer.imageName, otherPlayer.playerID, new Vector2(otherPlayer.X, otherPlayer.Y), "testGamerTag");
+                    GamePlayer newPlayer = new GamePlayer(client, 
+                                            otherPlayer.imageName, 
+                                            otherPlayer.playerID,
+                                            new Vector2(otherPlayer.X, 
+                                            otherPlayer.Y),
+                                            otherPlayer.gamerTag);
                     OtherPlayers.Add(newPlayer);
 
                     break;

@@ -23,7 +23,7 @@ namespace GameServerConsole
             X = x;
             Y = y;
             gamerTag = GamerTag;
-            gamerTag = "testGamerTag";
+     //       gamerTag = "testGamerTag";
         }
 
         public string PlayerMessage(string header)

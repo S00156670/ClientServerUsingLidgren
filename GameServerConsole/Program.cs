@@ -101,6 +101,7 @@ namespace GameServerConsole
                 case "Join":
                     // Add the player to the server copy
                     Players.Add(p);
+
                     // send the message to all clients that players are joined
                     foreach (PlayerData player in Players)
                     {
